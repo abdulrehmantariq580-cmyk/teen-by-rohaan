@@ -30,15 +30,53 @@
         }
 
         /* --- ANNOUNCEMENT BAR --- */
-        .announcement-bar {
+        /* --- ANNOUNCEMENT BAR (MOVING/MARQUEE) --- */
+       /* --- ANNOUNCEMENT BAR (SEAMLESS CONTINUOUS MARQUEE) --- */
+        .announcement-bar-container {
             background-color: var(--primary-black);
             color: var(--accent-yellow);
-            text-align: center;
-            padding: 8px 15px;
+            padding: 8px 0;
+            overflow: hidden;
+            width: 100%;
+            display: flex; /* Flexbox removes extra spaces */
+        }
+
+        .announcement-bar-content {
             font-size: 13px;
             font-weight: 500;
             letter-spacing: 1px;
             text-transform: uppercase;
+            width: 100%;
+        }
+
+        .marquee-scroll {
+            display: flex;
+            width: max-content; /* Container will stretch to fit all repeated items */
+            /* 25s controls the speed. Linear ensures constant speed. */
+            animation: seamless-scroll 25s linear infinite; 
+        }
+
+        .marquee-item {
+            padding: 0 40px; /* Space between each repeated sentence */
+            white-space: nowrap;
+        }
+
+        /* The Seamless Animation */
+        @keyframes seamless-scroll {
+            0% {
+                transform: translateX(0); /* Starts at normal position */
+            }
+            100% {
+                /* Shifts exactly by half the width of the container. 
+                   Because we duplicated the items (Set 1 and Set 2), 
+                   shifting by 50% makes it look like it's looping perfectly. */
+                transform: translateX(-50%); 
+            }
+        }
+        
+        /* Pause on hover */
+        .announcement-bar-container:hover .marquee-scroll {
+            animation-play-state: paused;
         }
 
         /* --- MAIN HEADER --- */
@@ -200,8 +238,24 @@
 <body>
 
     <!-- ANNOUNCEMENT BAR -->
-    <div class="announcement-bar">
-        Free Shipping on Orders Over Rs. 5000 | Premium Tech & Decor
+    <!-- ANNOUNCEMENT BAR (MOVING/MARQUEE) -->
+    <!-- ANNOUNCEMENT BAR (SEAMLESS CONTINUOUS MARQUEE) -->
+    <div class="announcement-bar-container">
+        <div class="announcement-bar-content">
+            <div class="marquee-scroll">
+                <!-- Set 1 (Original) -->
+                <span class="marquee-item">Free Shipping on Orders Over Rs. 5000 | Premium Tech & Decor</span>
+                <span class="marquee-item">Free Shipping on Orders Over Rs. 5000 | Premium Tech & Decor</span>
+                <span class="marquee-item">Free Shipping on Orders Over Rs. 5000 | Premium Tech & Decor</span>
+                <span class="marquee-item">Free Shipping on Orders Over Rs. 5000 | Premium Tech & Decor</span>
+                
+                <!-- Set 2 (Exact copy of Set 1 for the seamless illusion) -->
+                <span class="marquee-item">Free Shipping on Orders Over Rs. 5000 | Premium Tech & Decor</span>
+                <span class="marquee-item">Free Shipping on Orders Over Rs. 5000 | Premium Tech & Decor</span>
+                <span class="marquee-item">Free Shipping on Orders Over Rs. 5000 | Premium Tech & Decor</span>
+                <span class="marquee-item">Free Shipping on Orders Over Rs. 5000 | Premium Tech & Decor</span>
+            </div>
+        </div>
     </div>
 
     <!-- MAIN HEADER -->
