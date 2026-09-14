@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>TEEN BY ROHAN - Premium Store</title>
     <!-- Google Fonts for Premium Typography -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -23,7 +23,11 @@
             padding: 0;
             box-sizing: border-box;
         }
-
+        
+        html, body {
+            overflow-x: hidden; /* Yeh side par nikalne wale hissay ko chupayega */
+            width: 100%;
+        }
         body {
             font-family: var(--font-family);
             background-color: var(--light-gray); /* Just for testing body contrast */
@@ -929,20 +933,25 @@
             border-color: var(--accent-yellow);
         }
 
-        /* --- RESPONSIVE DESIGN (MOBILE) --- */
+        /* --- RESPONSIVE DESIGN (MOBILE) FOR PART 4 --- */
         @media screen and (max-width: 768px) {
-            .product-catalog-section { padding: 50px 5%; }
+            .product-catalog-section { padding: 40px 3%; } /* Padding thori kam ki taake jagah milay */
+            
             .catalog-grid {
-                /* Forces exactly 2 columns on mobile devices */
-                grid-template-columns: repeat(2, 1fr);
-                gap: 15px;
+                /* Yahan minmax htaya hai taake strictly 2 columns banen */
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 10px; /* Cards ke darmiyan gap kam kiya */
             }
-            .catalog-card { padding: 15px; }
-            .cat-image-wrapper { height: 160px; margin-bottom: 15px;}
-            .cat-product-name { font-size: 0.95rem; }
-            .cat-product-price { font-size: 1.1rem; }
-            .cat-btn { font-size: 0.8rem; padding: 10px; }
-            .card-badge { font-size: 0.65rem; padding: 4px 8px; }
+            
+            .catalog-card { 
+                padding: 10px; /* Card ki androni padding kam ki */
+            }
+            
+            .cat-image-wrapper { height: 140px; margin-bottom: 10px;}
+            .cat-product-name { font-size: 0.85rem; }
+            .cat-product-price { font-size: 0.95rem; }
+            .cat-btn { font-size: 0.75rem; padding: 8px; }
+            .card-badge { font-size: 0.6rem; padding: 3px 6px; top: 10px; left: 10px; }
         }
         
         @media screen and (max-width: 400px) {
